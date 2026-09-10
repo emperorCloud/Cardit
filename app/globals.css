@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-sand text-charcoal font-body antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+
+  ::selection {
+    background-color: #0FB4C4;
+    color: #FFFFFF;
+  }
+
+  :focus-visible {
+    outline: 2px solid #0FB4C4;
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply text-xs font-display uppercase tracking-[0.22em] text-cyan-dim;
+  }
+
+  .section-pad {
+    @apply px-6 md:px-10 lg:px-16 py-16 md:py-24;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-cyan text-white font-display font-bold text-sm uppercase tracking-wide px-6 py-3.5 rounded-sm transition-transform hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-8px_rgba(15,180,196,0.45)];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 border border-line text-graphite font-display font-semibold text-sm uppercase tracking-wide px-6 py-3.5 rounded-sm transition-colors hover:border-cyan hover:text-cyan-dim;
+  }
+
+  .btn-secondary-dark {
+    @apply inline-flex items-center justify-center gap-2 border border-line text-graphite font-display font-semibold text-sm uppercase tracking-wide px-6 py-3.5 rounded-sm transition-colors hover:border-cyan hover:text-cyan-dim;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
