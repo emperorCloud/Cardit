@@ -9,13 +9,13 @@ const RECIPIENT_EMAIL = "emperordev@proton.me";
 // se faire depuis ce domaine de test fourni par Resend. Une fois cardit.cm
 // vérifié (onglet "Domains" du dashboard Resend), remplacer par une adresse
 // du type "CARDIT <contact@cardit.cm>".
-const SENDER_EMAIL = "CARDIT <cardit@resend.dev>";
+const SENDER_EMAIL = "CARDIT <cardit@vercel.app>";
 
 export async function POST(request: Request) {
-  const apiKey = process.env.RESEND_API_KEY;
+  const apiKey = process.env.RESEND_API_CarditKEY;
 
   if (!apiKey) {
-    console.error("RESEND_API_KEY manquante dans les variables d'environnement.");
+    console.error("RESEND_API_CarditKEY manquante dans les variables d'environnement.");
     return NextResponse.json(
       { error: "Configuration serveur manquante." },
       { status: 500 }
