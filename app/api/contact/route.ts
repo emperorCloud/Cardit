@@ -1,25 +1,18 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-// Adresse de réception temporaire — à remplacer par contact@cardit.cm
-// dès que cette boîte sera disponible et vérifiée dans Resend.
-const RECIPIENT_EMAIL = "emperordev@proton.me";
-
-// Tant que le domaine cardit.cm n'est pas vérifié dans Resend, l'envoi doit
-// se faire depuis ce domaine de test fourni par Resend. Une fois cardit.cm
-// vérifié (onglet "Domains" du dashboard Resend), remplacer par une adresse
-// du type "CARDIT <contact@cardit.cm>".
-const SENDER_EMAIL = "CARDIT <cardit@vercel.app>";
+// ⚠️ Tant que vous n'avez pas de domaine vérifié dans Resend :
+//   - l'envoi doit se faire depuis onboarding@resend.dev
+//   - le destinataire doit être l'adresse de votre compte Resend
+const RECIPIENT_EMAIL = "emperordev706@gmail.com";
+const SENDER_EMAIL = "CARDIT <onboarding@resend.dev>";
 
 export async function POST(request: Request) {
   const apiKey = process.env.RESEND_API_CarditKEY;
 
   if (!apiKey) {
     console.error("RESEND_API_CarditKEY manquante dans les variables d'environnement.");
-    return NextResponse.json(
-      { error: "Configuration serveur manquante." },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Configuration serveur manquante." }, { status: 500 });
   }
 
   let body: {
@@ -40,10 +33,7 @@ export async function POST(request: Request) {
   const { name, email, company, phone, domain, message } = body;
 
   if (!name || !email || !message) {
-    return NextResponse.json(
-      { error: "Nom, email et message sont requis." },
-      { status: 400 }
-    );
+    return NextResponse.json({ error: "Nom, email et message sont requis." }, { status: 400 });
   }
 
   const resend = new Resend(apiKey);
@@ -68,26 +58,20 @@ export async function POST(request: Request) {
     const { error } = await resend.emails.send({
       from: SENDER_EMAIL,
       to: RECIPIENT_EMAIL,
-      replyTo: email,
+      replyTo: email, // pour pouvoir répondre au visiteur en un clic
       subject: `Nouveau contact CARDIT — ${name}`,
       html,
     });
 
     if (error) {
       console.error("Erreur Resend:", error);
-      return NextResponse.json(
-        { error: "Échec de l'envoi de l'email." },
-        { status: 502 }
-      );
+      return NextResponse.json({ error: "Échec de l'envoi de l'email." }, { status: 502 });
     }
 
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("Erreur inattendue lors de l'envoi:", err);
-    return NextResponse.json(
-      { error: "Erreur serveur inattendue." },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Erreur serveur inattendue." }, { status: 500 });
   }
 }
 
