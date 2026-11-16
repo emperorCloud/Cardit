@@ -1,5 +1,7 @@
+// cardit/app/layout.tsx
 import type { Metadata } from "next";
 import { Sora, Manrope } from "next/font/google";
+import { LanguageProvider } from "@/components/LanguageProvider";
 import JsonLd from "@/components/JsonLd";
 import { siteUrl, siteContact } from "@/lib/site";
 import "./globals.css";
@@ -122,7 +124,9 @@ export default function RootLayout({
       <body>
         <JsonLd data={organizationJsonLd} />
         <JsonLd data={websiteJsonLd} />
-        {children}
+        <LanguageProvider>      {/* ← AJOUT */}
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

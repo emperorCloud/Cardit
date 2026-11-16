@@ -1,7 +1,7 @@
+// cardit/app/(site)/layout.tsx
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MobileQuickBar from "@/components/MobileQuickBar";
-import { LanguageProvider } from "@/components/LanguageProvider";
 import { getPosts, getProducts, getServices } from "@/lib/content";
 
 export default async function SiteLayout({ children }: { children: React.ReactNode }) {
@@ -10,7 +10,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
   const hasBlog = posts.length > 0;
 
   return (
-    <LanguageProvider>
+    <>                                    {/* ← Fragment au lieu de LanguageProvider */}
       <Header hasProducts={hasProducts} hasBlog={hasBlog} />
       <main className="pb-16 md:pb-0">{children}</main>
       <Footer
@@ -19,6 +19,6 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         hasBlog={hasBlog}
       />
       <MobileQuickBar />
-    </LanguageProvider>
+    </>
   );
 }

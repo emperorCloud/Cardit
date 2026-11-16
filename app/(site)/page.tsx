@@ -1,3 +1,4 @@
+// cardit/app/(site)/page.tsx
 import Hero from "@/components/Hero";
 import StatsBand from "@/components/StatsBand";
 import ServicesOverview from "@/components/ServicesOverview";

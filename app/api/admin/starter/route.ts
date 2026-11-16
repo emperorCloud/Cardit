@@ -1,3 +1,4 @@
+// cardit/app/api/admin/starter/route.ts
 import { NextResponse } from "next/server";
 import { revalidateTag } from "next/cache";
 import { isAdmin } from "@/lib/auth";
@@ -31,7 +32,7 @@ export async function POST() {
     for (const [i, p] of STARTER_PRODUCTS.entries()) await insert("cardit_products", { ...p, image: "", url: "", position: (i + 1) * 10, visible: false });
 
     await sql.query(`INSERT INTO cardit_settings (key, value) VALUES ($1, '1') ON CONFLICT DO NOTHING`, [MARKER]);
-    revalidateTag("content");
+    revalidateTag("content", "max");
     return NextResponse.json({ success: true });
   } catch (e) {
     console.error("[starter]", e);

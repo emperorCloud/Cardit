@@ -1,3 +1,4 @@
+// cardit/app/api/admin/seed/route.ts
 import { NextResponse } from "next/server";
 import { revalidateTag } from "next/cache";
 import { isAdmin } from "@/lib/auth";
@@ -30,7 +31,7 @@ export async function POST() {
     await insertAll(sql, "cardit_services", seedServiceRows());
     await insertAll(sql, "cardit_team", seedTeamRows());
     await sql.query(`INSERT INTO cardit_settings (key, value) VALUES ($1, '1') ON CONFLICT DO NOTHING`, [SEEDED_KEY]);
-    revalidateTag("content");
+    revalidateTag("content", "max");
     return NextResponse.json({ success: true });
   } catch (e) {
     console.error("[seed]", e);

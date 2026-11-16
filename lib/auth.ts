@@ -1,3 +1,4 @@
+// cardit/lib/auth.ts
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
 
@@ -42,8 +43,9 @@ export function verifyToken(token?: string) {
   return Number(exp) > Math.floor(Date.now() / 1000);
 }
 
-export function isAdmin() {
-  return verifyToken(cookies().get(COOKIE)?.value);
+export async function isAdmin() {
+  const cookieStore = await cookies();
+  return verifyToken(cookieStore.get(COOKIE)?.value);
 }
 
 export const cookieOptions = {
