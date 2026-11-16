@@ -1,14 +1,10 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Manrope } from "next/font/google";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import { Sora, Manrope } from "next/font/google";
 import JsonLd from "@/components/JsonLd";
-import MobileQuickBar from "@/components/MobileQuickBar";
-import { LanguageProvider } from "@/components/LanguageProvider";
 import { siteUrl, siteContact } from "@/lib/site";
 import "./globals.css";
 
-const display = Space_Grotesk({
+const display = Sora({
   subsets: ["latin"],
   weight: ["500", "600", "700"],
   variable: "--font-display",
@@ -126,12 +122,7 @@ export default function RootLayout({
       <body>
         <JsonLd data={organizationJsonLd} />
         <JsonLd data={websiteJsonLd} />
-        <LanguageProvider>
-          <Header />
-          <main className="pb-16 md:pb-0">{children}</main>
-          <Footer />
-          <MobileQuickBar />
-        </LanguageProvider>
+        {children}
       </body>
     </html>
   );

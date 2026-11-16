@@ -8,10 +8,10 @@ const RECIPIENT_EMAIL = "emperordev706@gmail.com";
 const SENDER_EMAIL = "CARDIT <onboarding@resend.dev>";
 
 export async function POST(request: Request) {
-  const apiKey = process.env.RESEND_API_CarditKEY;
+  const apiKey = process.env.RESEND_API_KEY ?? process.env.RESEND_API_CarditKEY;
 
   if (!apiKey) {
-    console.error("RESEND_API_CarditKEY manquante dans les variables d'environnement.");
+    console.error("Clé Resend manquante (RESEND_API_KEY ou RESEND_API_CarditKEY).");
     return NextResponse.json({ error: "Configuration serveur manquante." }, { status: 500 });
   }
 

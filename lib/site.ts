@@ -14,4 +14,7 @@ export const socials = {
     "https://wa.me/237622280626?text=Bonjour%20CARDIT%2C%20je%20souhaite%20des%20informations%20sur%20vos%20services.",
   linkedin: "https://linkedin.com/company/cardit-cm",
   facebook: "https://facebook.com/cardit.cm",
+  // À renseigner : le bouton n'apparaît que lorsque le lien est rempli.
+  instagram: "",
+  x: "",
 };

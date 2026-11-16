@@ -369,7 +369,7 @@ export const team: TeamMember[] = [
     role: { fr: "CEO", en: "CEO" },
     bio: { fr: "Architecte d'infrastructures cloud et IoT. ", 
       en: "Infrastructure, cloud Architect and IoT." },
-    photo: "/images/team/Nantsa.png",
+    photo: "/images/team/Nantsa.jpg",
   },
   {
     name: "Mounchikpou Njiemessa Mohamed Nasser",

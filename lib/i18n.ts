@@ -4,10 +4,12 @@ export const UI_TEXT = {
   fr: {
     nav: {
       services: "Services",
+      products: "Produits",
+      blog: "Blog",
       about: "À propos",
       partners: "Partenaires",
       contact: "Contact",
-      cta: "Démarrer un projet",
+      cta: "Demander un devis",
     },
     hero: {
       eyebrow: "Centre Africain de Recherche, Développement & Innovation Technologique",
@@ -16,7 +18,7 @@ export const UI_TEXT = {
       titleEnd: "",
       subtitle:
         "12 pôles d'expertise : développement logiciel, cloud, cybersécurité, data & IA, marketing digital, robotique & drones, formation et recherche — un seul partenaire technologique, de l'idée au déploiement.",
-      ctaPrimary: "Démarrer un projet",
+      ctaPrimary: "Demander un devis",
       ctaSecondary: "Découvrir nos services",
       ctaWhatsapp: "WhatsApp",
       techPills: ["Cloud & DevOps", "Cybersécurité", "Data & IA", "Drones & Robotique"],
@@ -46,10 +48,12 @@ export const UI_TEXT = {
       local: "Ancrage africain",
     },
     ctaBand: {
-      title: "Un projet en tête ?",
+      title: "Un projet en tête ? Obtenez votre devis.",
       description:
-        "Parlons-en. Notre équipe étudie votre besoin et vous propose une approche technique et un plan de déploiement adaptés.",
-      button: "Nous contacter",
+        "Décrivez votre besoin en quelques lignes. Nous revenons vers vous avec une première approche technique, un plan de déploiement et un devis adaptés à votre contexte.",
+      button: "Demander un devis",
+      whatsapp: "Écrire sur WhatsApp",
+      note: "Premier retour sous 48 h ouvrées.",
     },
     footer: {
       description:
@@ -93,6 +97,22 @@ export const UI_TEXT = {
       teamTitle: "Les personnes derrière CARDIT",
       teamNote: "Photos et biographies à compléter dans lib/data.ts.",
     },
+    products: {
+      title: "Des produits conçus pour les réalités africaines",
+      intro: "Solutions prêtes à déployer, adaptables à votre organisation.",
+      empty: "Notre catalogue arrive bientôt. En attendant, parlez-nous de votre besoin.",
+      cta: "Demander une démo",
+      learnMore: "En savoir plus",
+    },
+    blog: {
+      title: "Actualités et analyses",
+      intro: "Technologie, innovation et transformation numérique vues depuis l'Afrique.",
+      empty: "Les premiers articles arrivent bientôt.",
+      readMore: "Lire l'article",
+      back: "Tous les articles",
+      home: "Accueil",
+      published: "Publié le",
+    },
     partners: {
       eyebrow: "Nos partenaires",
       title: "Ils nous font confiance et co-construisent avec nous",
@@ -110,6 +130,7 @@ export const UI_TEXT = {
       emailLabel: "Email",
       phoneLabel: "Téléphone",
       siteLabel: "Site",
+      followLabel: "Suivez-nous",
       form: {
         name: "Nom complet",
         email: "Email",
@@ -152,10 +173,12 @@ export const UI_TEXT = {
   en: {
     nav: {
       services: "Services",
+      products: "Products",
+      blog: "Blog",
       about: "About",
       partners: "Partners",
       contact: "Contact",
-      cta: "Start a project",
+      cta: "Request a quote",
     },
     hero: {
       eyebrow: "African Center for Research, Development & Technological Innovation",
@@ -164,7 +187,7 @@ export const UI_TEXT = {
       titleEnd: " forward",
       subtitle:
         "12 areas of expertise: software development, cloud, cybersecurity, data & AI, digital marketing, robotics & drones, training and research — one technology partner, from idea to deployment.",
-      ctaPrimary: "Start a project",
+      ctaPrimary: "Request a quote",
       ctaSecondary: "Explore our services",
       ctaWhatsapp: "WhatsApp",
       techPills: ["Cloud & DevOps", "Cybersecurity", "Data & AI", "Drones & Robotics"],
@@ -194,10 +217,12 @@ export const UI_TEXT = {
       local: "African footprint",
     },
     ctaBand: {
-      title: "Have a project in mind?",
+      title: "A project in mind? Get your quote.",
       description:
-        "Let's talk. Our team reviews your needs and proposes a technical approach and deployment plan tailored to you.",
-      button: "Contact us",
+        "Describe your needs in a few lines. We come back to you with an initial technical approach, a deployment plan and a quote tailored to your context.",
+      button: "Request a quote",
+      whatsapp: "Message us on WhatsApp",
+      note: "First reply within 48 business hours.",
     },
     footer: {
       description:
@@ -241,6 +266,22 @@ export const UI_TEXT = {
       teamTitle: "The people behind CARDIT",
       teamNote: "Photos and bios to be added in lib/data.ts.",
     },
+    products: {
+      title: "Products built for African realities",
+      intro: "Ready-to-deploy solutions, adaptable to your organization.",
+      empty: "Our catalog is coming soon. In the meantime, tell us about your needs.",
+      cta: "Request a demo",
+      learnMore: "Learn more",
+    },
+    blog: {
+      title: "News and insights",
+      intro: "Technology, innovation and digital transformation seen from Africa.",
+      empty: "The first articles are coming soon.",
+      readMore: "Read the article",
+      back: "All articles",
+      home: "Home",
+      published: "Published on",
+    },
     partners: {
       eyebrow: "Our partners",
       title: "They trust us and build alongside us",
@@ -258,6 +299,7 @@ export const UI_TEXT = {
       emailLabel: "Email",
       phoneLabel: "Phone",
       siteLabel: "Website",
+      followLabel: "Follow us",
       form: {
         name: "Full name",
         email: "Email",

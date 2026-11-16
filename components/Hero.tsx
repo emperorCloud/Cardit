@@ -1,100 +1,59 @@
 "use client";
 
 import Link from "next/link";
-import { Sparkles, ArrowRight, Layers, CheckCircle2, MessageCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import CircuitContour from "./CircuitContour";
+import WhatsAppIcon from "./WhatsAppIcon";
 import { useLanguage } from "./LanguageProvider";
 import { socials } from "@/lib/site";
 
 export default function Hero() {
   const { t } = useLanguage();
+  const h = t.hero;
 
   return (
-    <section className="relative overflow-hidden bg-white text-graphite">
-      <CircuitContour className="pointer-events-none absolute inset-0 h-full w-full opacity-70" />
-      <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/70 to-white" />
-      <div className="pointer-events-none absolute -top-24 left-1/2 h-72 w-[600px] -translate-x-1/2 rounded-full bg-gradient-to-tr from-cyan-100/60 via-sky-50/50 to-transparent blur-3xl" />
+    <section className="relative overflow-hidden bg-white">
+      {/* Le seul mouvement de la page : le tracé se dessine une fois au chargement */}
+      <CircuitContour className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-[75%] w-full opacity-70 md:block" />
 
-      <div className="relative mx-auto max-w-content px-6 pb-16 pt-14 md:px-10 md:pb-28 md:pt-24 lg:px-16">
-        <div
-          className="mb-5 inline-flex animate-fade-up items-center gap-2 rounded-full border border-cyan/40 bg-white/90 px-3.5 py-1.5 shadow-sm md:mb-6"
-        >
-          <span className="h-2 w-2 rounded-full bg-cyan animate-pulse" />
-          <span className="font-display text-[11px] font-bold uppercase tracking-wider text-cyan-dim">
-            {t.hero.eyebrow}
-          </span>
-        </div>
+      <div className="relative mx-auto max-w-content px-5 pb-20 pt-16 sm:px-6 md:px-10 md:pb-32 md:pt-28 lg:px-16">
+        <p className="max-w-sm text-sm leading-snug text-steel">{h.eyebrow}</p>
 
-        <h1
-          className="max-w-3xl animate-fade-up font-display text-3xl font-bold leading-[1.1] tracking-tight sm:text-4xl md:text-6xl md:leading-[1.05]"
-          style={{ animationDelay: "0.1s" }}
-        >
-          {t.hero.titleStart}
-          <span className="bg-gradient-to-r from-cyan-dim via-cyan to-sky-600 bg-clip-text text-transparent">
-            {t.hero.titleHighlight}
-          </span>
-          {t.hero.titleEnd}
+        <h1 className="mt-6 max-w-5xl font-display text-[2.6rem] font-semibold leading-[1.02] tracking-[-0.04em] text-graphite sm:text-6xl lg:text-[5.25rem] [text-wrap:balance]">
+          {h.titleStart}
+          {h.titleHighlight}
+          {h.titleEnd}
         </h1>
 
-        <p
-          className="mt-5 max-w-xl animate-fade-up text-sm leading-relaxed text-steel md:mt-6 md:text-lg"
-          style={{ animationDelay: "0.2s" }}
-        >
-          {t.hero.subtitle}
-        </p>
+        <p className="mt-7 max-w-xl text-base leading-relaxed text-steel md:text-lg">{h.subtitle}</p>
 
-        <div
-          className="mt-8 flex animate-fade-up flex-col gap-3 sm:flex-row md:mt-10 md:gap-3.5"
-          style={{ animationDelay: "0.3s" }}
-        >
-          <Link
-            href="/contact"
-            className="group inline-flex items-center justify-center gap-2.5 rounded-sm bg-gradient-to-r from-cyan-600 via-cyan to-sky-600 px-6 py-3.5 font-display text-sm font-bold uppercase tracking-wide text-white shadow-lg shadow-cyan/25 transition-all hover:-translate-y-0.5 hover:shadow-cyan/40"
-          >
-            <Sparkles className="h-4 w-4" />
-            {t.hero.ctaPrimary}
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Link>
-          <Link href="/services" className="btn-secondary">
-            <Layers className="h-4 w-4 text-cyan-dim" />
-            {t.hero.ctaSecondary}
+        <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <Link href="/contact" className="btn-primary group !min-h-[52px] !px-7">
+            {h.ctaPrimary}
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </Link>
           <a
             href={socials.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-sm border border-emerald-300 bg-emerald-50 px-5 py-3.5 font-display text-sm font-bold text-emerald-800 shadow-sm transition-colors hover:bg-emerald-100/80"
+            className="btn-secondary !min-h-[52px] !px-7"
           >
-            <MessageCircle className="h-4 w-4 text-emerald-600" />
-            {t.hero.ctaWhatsapp}
+            <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
+            {h.ctaWhatsapp}
           </a>
+          <Link href="/services" className="px-2 py-2 text-sm font-medium text-graphite underline-offset-4 hover:text-cyan-dim hover:underline sm:ml-2">
+            {h.ctaSecondary}
+          </Link>
         </div>
 
-        <div
-          className="mt-6 flex animate-fade-up flex-wrap items-center gap-2 md:mt-8"
-          style={{ animationDelay: "0.35s" }}
-        >
-          {t.hero.techPills.map((pill) => (
-            <span
-              key={pill}
-              className="rounded-lg border border-line bg-mist px-2.5 py-1 text-xs font-semibold text-graphite/80"
-            >
-              {pill}
-            </span>
+        <ul className="mt-16 grid gap-x-10 gap-y-3 border-t border-line pt-6 text-sm text-steel sm:grid-cols-3 md:mt-24">
+          {h.reassurance.map((line) => (
+            <li key={line} className="flex items-center gap-2.5">
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-cyan" />
+              {line}
+            </li>
           ))}
-        </div>
-
-        <div
-          className="mt-6 grid animate-fade-up grid-cols-1 gap-3 border-t border-line pt-6 text-xs font-semibold text-graphite/80 sm:grid-cols-3 md:mt-8"
-          style={{ animationDelay: "0.4s" }}
-        >
-          {t.hero.reassurance.map((line) => (
-            <div key={line} className="flex items-center gap-2">
-              <CheckCircle2 className="h-4 w-4 shrink-0 text-cyan-dim" />
-              <span>{line}</span>
-            </div>
-          ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

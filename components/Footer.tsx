@@ -2,10 +2,19 @@
 
 import Link from "next/link";
 import Logo from "./Logo";
-import { siteContact, socials } from "@/lib/site";
+import SocialLinks from "./SocialLinks";
+import { siteContact } from "@/lib/site";
 import { useLanguage } from "./LanguageProvider";
 
-export default function Footer() {
+export default function Footer({
+  services,
+  hasProducts = false,
+  hasBlog = false,
+}: {
+  services: { slug: string; title: { fr: string; en: string } }[];
+  hasProducts?: boolean;
+  hasBlog?: boolean;
+}) {
   const year = new Date().getFullYear();
   const { lang, t } = useLanguage();
 
@@ -24,6 +33,8 @@ export default function Footer() {
             <h3 className="eyebrow mb-4">{t.footer.navTitle}</h3>
             <ul className="space-y-2.5 text-sm text-steel">
               <li><Link className="hover:text-cyan-dim" href="/services">{t.nav.services}</Link></li>
+              {hasProducts && <li><Link className="hover:text-cyan-dim" href="/produits">{t.nav.products}</Link></li>}
+              {hasBlog && <li><Link className="hover:text-cyan-dim" href="/blog">{t.nav.blog}</Link></li>}
               <li><Link className="hover:text-cyan-dim" href="/about">{t.nav.about}</Link></li>
               <li><Link className="hover:text-cyan-dim" href="/partners">{t.nav.partners}</Link></li>
               <li><Link className="hover:text-cyan-dim" href="/contact">{t.nav.contact}</Link></li>
@@ -33,11 +44,9 @@ export default function Footer() {
           <div>
             <h3 className="eyebrow mb-4">{t.footer.pillarsTitle}</h3>
             <ul className="space-y-2.5 text-sm text-steel">
-              <li><Link className="hover:text-cyan-dim" href="/services/developpement-logiciel">{lang === "fr" ? "Développement logiciel" : "Software Development"}</Link></li>
-              <li><Link className="hover:text-cyan-dim" href="/services/cloud-infrastructure">{lang === "fr" ? "Cloud & Infrastructure" : "Cloud & Infrastructure"}</Link></li>
-              <li><Link className="hover:text-cyan-dim" href="/services/cybersecurite">{lang === "fr" ? "Cybersécurité" : "Cybersecurity"}</Link></li>
-              <li><Link className="hover:text-cyan-dim" href="/services/data-intelligence-artificielle">{lang === "fr" ? "Data & IA" : "Data & AI"}</Link></li>
-              <li><Link className="hover:text-cyan-dim" href="/services/robotique-systemes-autonomes">{lang === "fr" ? "Robotique & Drones" : "Robotics & Drones"}</Link></li>
+              {services.map((sv) => (
+                <li key={sv.slug}><Link className="hover:text-cyan-dim" href={`/services/${sv.slug}`}>{sv.title[lang]}</Link></li>
+              ))}
               <li><Link className="font-semibold hover:text-cyan-dim" href="/services">{t.footer.allPillars}</Link></li>
             </ul>
           </div>
@@ -47,9 +56,9 @@ export default function Footer() {
             <ul className="space-y-2.5 text-sm text-steel">
               <li><a className="hover:text-cyan-dim" href={siteContact.emailHref}>{siteContact.email}</a></li>
               <li><a className="hover:text-cyan-dim" href={siteContact.phoneHref}>{siteContact.phone}</a></li>
-              <li><a className="text-emerald-600 hover:underline" href={socials.whatsapp} target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
               <li className="text-steel/80">{siteContact.address}</li>
             </ul>
+            <div className="mt-5"><SocialLinks size="sm" /></div>
           </div>
         </div>
 

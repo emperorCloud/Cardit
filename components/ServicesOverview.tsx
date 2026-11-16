@@ -1,64 +1,61 @@
 "use client";
 
 import Link from "next/link";
-import { services } from "@/lib/data";
+import { ArrowUpRight } from "lucide-react";
+import type { Service } from "@/lib/content";
 import ServiceIcon from "./ServiceIcon";
 import { useLanguage } from "./LanguageProvider";
 
-export default function ServicesOverview() {
+export default function ServicesOverview({ services }: { services: Service[] }) {
   const { lang, t } = useLanguage();
+  const o = t.servicesOverview;
 
   return (
-    <section id="services" className="section-pad bg-white">
-      <div className="mx-auto max-w-content">
-        <p className="eyebrow mb-4">{t.servicesOverview.eyebrow}</p>
-        <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end md:gap-6">
-          <h2 className="max-w-xl text-2xl font-bold leading-tight text-graphite sm:text-3xl md:text-4xl">
-            {t.servicesOverview.heading}
+    <section id="services" className="bg-white py-20 md:py-32">
+      <div className="mx-auto grid max-w-content gap-12 px-5 sm:px-6 md:px-10 lg:grid-cols-[5fr_7fr] lg:gap-20 lg:px-16">
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <h2 className="font-display text-3xl font-semibold leading-[1.08] tracking-[-0.03em] text-graphite sm:text-4xl md:text-5xl [text-wrap:balance]">
+            {o.heading}
           </h2>
-          <Link href="/services" className="btn-secondary shrink-0">
-            {t.servicesOverview.cta}
-          </Link>
-        </div>
-
-        <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-line bg-line sm:grid-cols-3 md:mt-14 lg:grid-cols-4">
-          {services.map((service) => (
-            <Link
-              key={service.slug}
-              href={`/services/${service.slug}`}
-              className="group relative flex flex-col items-start gap-3 overflow-hidden bg-white p-5 transition-colors hover:bg-mist sm:p-6"
-            >
-              <span
-                className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${service.colors.accent} opacity-0 transition-opacity group-hover:opacity-100`}
-              />
-              <div className="flex w-full items-start justify-between">
-                <span className={`flex h-9 w-9 items-center justify-center rounded-sm border ${service.colors.iconBg}`}>
-                  <ServiceIcon name={service.iconName} className="h-4 w-4" strokeWidth={1.75} />
-                </span>
-                <span className="font-display text-xs text-steel">{service.index}</span>
-              </div>
-              <h3 className="font-display text-sm font-bold leading-snug text-graphite sm:text-base">
-                {service.title[lang]}
-              </h3>
-            </Link>
-          ))}
-        </div>
-
-        <div className="mt-6 rounded-sm border border-cyan/25 bg-cyan-soft p-6 sm:mt-8 sm:flex sm:items-center sm:justify-between sm:gap-6 sm:p-7">
-          <div>
-            <p className="font-display text-base font-bold text-graphite sm:text-lg">
-              {t.servicesOverview.comboTitle}
-            </p>
-            <p className="mt-1.5 text-sm text-steel">
-              {t.servicesOverview.comboDesc}
-            </p>
-          </div>
           <Link
-            href="/contact"
-            className="mt-4 inline-block font-display text-sm uppercase tracking-wide text-cyan-dim hover:underline sm:mt-0 sm:shrink-0"
+            href="/services"
+            className="group mt-8 inline-flex items-center gap-2 text-sm font-semibold text-graphite underline-offset-4 hover:text-cyan-dim hover:underline"
           >
-            {t.servicesOverview.comboCta}
+            {o.cta}
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </Link>
+        </div>
+
+        <div>
+          <ul className="divide-y divide-line border-y border-line">
+            {services.map((s) => (
+              <li key={s.slug}>
+                <Link
+                  href={`/services/${s.slug}`}
+                  className="group -mx-3 flex items-center gap-4 rounded-lg px-3 py-5 transition-colors hover:bg-mist md:py-6"
+                >
+                  <ServiceIcon name={s.iconName} className="h-5 w-5 shrink-0 text-cyan-dim" strokeWidth={1.6} />
+                  <span className="min-w-0 flex-1">
+                    <span className="block font-display text-lg font-medium tracking-[-0.01em] text-graphite md:text-xl">
+                      {s.title[lang]}
+                    </span>
+                    <span className="mt-0.5 line-clamp-1 block text-sm text-steel">{s.tagline[lang]}</span>
+                  </span>
+                  <ArrowUpRight className="h-4 w-4 shrink-0 text-graphite/25 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-cyan-dim" />
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="max-w-md">
+              <p className="font-display text-lg font-medium text-graphite">{o.comboTitle}</p>
+              <p className="mt-1 text-sm text-steel">{o.comboDesc}</p>
+            </div>
+            <Link href="/contact" className="btn-primary shrink-0">
+              {o.comboCta}
+            </Link>
+          </div>
         </div>
       </div>
     </section>
