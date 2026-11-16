@@ -13,10 +13,11 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
+  const { slug } = await params;
   const services = await getServices();
-  const service = services.find((s) => s.slug === params.slug);
+  const service = services.find((s) => s.slug === slug);
   if (!service) return {};
 
   const auto = `${service.tagline.fr} Découvrez les prestations CARDIT en ${service.title.fr.toLowerCase()} : ${service.highlights.fr.slice(0, 3).join(", ").toLowerCase()}.`;
@@ -30,12 +31,13 @@ export async function generateMetadata({
 export default async function ServiceDetailPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
+  const { slug } = await params;
   const services = await getServices();
-  const index = services.findIndex((s) => s.slug === params.slug);
+  const index = services.findIndex((s) => s.slug === slug);
   const service = services[index];
-  if (!service) notFound();
+  if (!service) return notFound();
 
   const prev = services[(index - 1 + services.length) % services.length];
   const next = services[(index + 1) % services.length];

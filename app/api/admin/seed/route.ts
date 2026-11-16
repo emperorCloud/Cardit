@@ -19,7 +19,7 @@ async function insertAll(sql: NonNullable<ReturnType<typeof adminSql>>, table: s
 
 /** Copie les 12 pôles et l'équipe du code vers la base (une seule fois). */
 export async function POST() {
-  if (!isAdmin()) return NextResponse.json({ error: "Non autorisé." }, { status: 401 });
+  if (!(await isAdmin())) return NextResponse.json({ error: "Non autorisé." }, { status: 401 });
   const sql = adminSql();
   if (!sql) return NextResponse.json({ error: "DATABASE_URL manquante." }, { status: 503 });
 

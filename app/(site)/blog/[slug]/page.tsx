@@ -10,8 +10,9 @@ export async function generateStaticParams() {
   return (await getPosts()).map((p) => ({ slug: p.slug }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = (await getPosts()).find((p) => p.slug === params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = (await getPosts()).find((p) => p.slug === slug);
   if (!post) return {};
   return pageMeta({
     title: post.seoTitle || post.title.fr,
@@ -23,9 +24,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   });
 }
 
-export default async function PostPage({ params }: { params: { slug: string } }) {
+export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const posts = await getPosts();
-  const post = posts.find((p) => p.slug === params.slug);
+  const post = posts.find((p) => p.slug === slug);
   if (!post) return notFound();
 
   const url = `${siteUrl}/blog/${post.slug}`;

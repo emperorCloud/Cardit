@@ -10,8 +10,9 @@ export async function generateStaticParams() {
   return (await getProducts()).map((p) => ({ slug: p.slug }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const product = (await getProducts()).find((p) => p.slug === params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const product = (await getProducts()).find((p) => p.slug === slug);
   if (!product) return {};
   return pageMeta({
     title: product.seoTitle || product.name.fr,
@@ -21,8 +22,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   });
 }
 
-export default async function ProductPage({ params }: { params: { slug: string } }) {
-  const product = (await getProducts()).find((p) => p.slug === params.slug);
+export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const product = (await getProducts()).find((p) => p.slug === slug);
   if (!product) return notFound();
 
   const url = `${siteUrl}/produits/${product.slug}`;

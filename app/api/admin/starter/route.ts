@@ -10,7 +10,7 @@ const MARKER = "starter_content";
 
 /** Importe les articles et offres d'exemple en brouillon (masqués) — une seule fois. */
 export async function POST() {
-  if (!isAdmin()) return NextResponse.json({ error: "Non autorisé." }, { status: 401 });
+  if (!(await isAdmin())) return NextResponse.json({ error: "Non autorisé." }, { status: 401 });
   const sql = adminSql();
   if (!sql) return NextResponse.json({ error: "DATABASE_URL manquante." }, { status: 503 });
 
