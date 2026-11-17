@@ -35,6 +35,9 @@ export async function POST() {
     return NextResponse.json({ success: true });
   } catch (e) {
     console.error("[seed]", e);
-    return NextResponse.json({ error: "Import impossible." }, { status: 500 });
+    return NextResponse.json(
+      { error: "Import impossible.", detail: e instanceof Error ? e.message.slice(0, 240) : undefined },
+      { status: 500 }
+    );
   }
 }

@@ -25,7 +25,10 @@ export default function AdminDashboard({ dbReady, blobReady }: { dbReady: boolea
     if (!dbReady) return setLoading(false);
     setLoading(true);
     const res = await fetch(`/api/admin/${tab}`);
-    if (res.status === 401) return router.refresh();
+    if (res.status === 401) {
+      setLoading(false);
+      return router.refresh(); // session absente ou expirée : retour à l'écran de connexion
+    }
     const data = await res.json().catch(() => ({}));
     setRows(data.rows ?? []);
     if (!res.ok) flash("err", data.error ?? "Chargement impossible.");
@@ -53,14 +56,14 @@ export default function AdminDashboard({ dbReady, blobReady }: { dbReady: boolea
     const res = await fetch("/api/admin/seed", { method: "POST" });
     const data = await res.json().catch(() => ({}));
     if (res.ok) { flash("ok", "Contenu importé : vous pouvez maintenant tout modifier."); load(); }
-    else flash("err", data.error ?? "Import impossible.");
+    else flash("err", (data.error ?? "Import impossible.") + (data.detail ? ` (${data.detail})` : ""));
   }
 
   async function importStarter() {
     const res = await fetch("/api/admin/starter", { method: "POST" });
     const data = await res.json().catch(() => ({}));
     if (res.ok) { flash("ok", "Brouillons importés : relisez-les, puis cliquez sur l'œil pour publier."); load(); }
-    else flash("err", data.error ?? "Import impossible.");
+    else flash("err", (data.error ?? "Import impossible.") + (data.detail ? ` (${data.detail})` : ""));
   }
 
   async function logout() {

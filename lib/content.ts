@@ -92,8 +92,6 @@ export function slugify(s: string) {
 export function seedServiceRows(): Row[] {
   return staticServices.map((s, i) => ({
     slug: s.slug,
-    index: s.index,           // ← ajouter
-    colors: s.colors,          // ← ajouter
     icon: s.iconName,
     title_fr: s.title.fr,
     title_en: s.title.en,
