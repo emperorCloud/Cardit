@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { AUDIENCES, FAQ, PROCESS, SPOTLIGHT, WHY } from "@/lib/home-content";
+import MobileCarousel from "./MobileCarousel";
 import { useLanguage } from "./LanguageProvider";
 
 const wrap = "mx-auto max-w-content px-5 sm:px-6 md:px-10 lg:px-16";
@@ -17,14 +18,17 @@ export function WhyCardit() {
           <h2 className={h2}>{WHY.title[lang]}</h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-steel md:text-lg">{WHY.intro[lang]}</p>
         </div>
-        <ul className="grid gap-x-10 gap-y-10 sm:grid-cols-2">
+        <MobileCarousel className="md:grid md:grid-cols-2 md:gap-x-10 md:gap-y-10" label={WHY.title[lang]}>
           {WHY.items.map((it) => (
-            <li key={it.title.fr} className="border-t border-graphite/15 pt-5">
+            <div
+              key={it.title.fr}
+              className="h-full rounded-2xl border border-line bg-white p-6 md:rounded-none md:border-0 md:border-t md:border-graphite/15 md:bg-transparent md:p-0 md:pt-5"
+            >
               <h3 className="font-display text-xl font-medium tracking-[-0.01em] text-graphite">{it.title[lang]}</h3>
               <p className="mt-3 text-sm leading-relaxed text-steel">{it.text[lang]}</p>
-            </li>
+            </div>
           ))}
-        </ul>
+        </MobileCarousel>
       </div>
     </section>
   );
@@ -66,18 +70,18 @@ export function Process() {
     <section className="bg-mist py-20 md:py-32">
       <div className={wrap}>
         <h2 className={`${h2} max-w-3xl`}>{PROCESS.title[lang]}</h2>
-        <ol className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-          {PROCESS.steps.map((s, i) => (
-            <li key={s.title.fr} className="relative">
+        <MobileCarousel wrapperClassName="mt-12 md:mt-14" className="md:grid md:grid-cols-2 md:gap-10 lg:grid-cols-4 lg:gap-8" label={PROCESS.title[lang]}>
+          {PROCESS.steps.map((st, i) => (
+            <div key={st.title.fr} className="relative h-full rounded-2xl border border-line bg-white p-6 md:rounded-none md:border-0 md:bg-transparent md:p-0">
               <span className="flex h-9 w-9 items-center justify-center rounded-full border border-cyan/50 bg-white font-display text-sm font-semibold text-cyan-dim">
                 {i + 1}
               </span>
               <span aria-hidden className="absolute left-12 right-0 top-[18px] hidden h-px bg-line lg:block" />
-              <h3 className="mt-5 font-display text-xl font-medium tracking-[-0.01em] text-graphite">{s.title[lang]}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-steel">{s.text[lang]}</p>
-            </li>
+              <h3 className="mt-5 font-display text-xl font-medium tracking-[-0.01em] text-graphite">{st.title[lang]}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-steel">{st.text[lang]}</p>
+            </div>
           ))}
-        </ol>
+        </MobileCarousel>
         <p className="mt-12 text-sm text-steel">{PROCESS.note[lang]}</p>
       </div>
     </section>
@@ -90,14 +94,24 @@ export function Audiences() {
     <section className="bg-white py-20 md:py-32">
       <div className={`${wrap} grid gap-12 lg:grid-cols-[5fr_7fr] lg:gap-20`}>
         <h2 className={h2}>{AUDIENCES.title[lang]}</h2>
-        <ul className="divide-y divide-line border-y border-line">
-          {AUDIENCES.items.map((it) => (
-            <li key={it.title.fr} className="grid gap-2 py-6 md:grid-cols-[2fr_3fr] md:gap-8">
-              <h3 className="font-display text-lg font-medium tracking-[-0.01em] text-graphite">{it.title[lang]}</h3>
-              <p className="text-sm leading-relaxed text-steel">{it.text[lang]}</p>
-            </li>
-          ))}
-        </ul>
+        <div>
+          <MobileCarousel className="md:hidden" label={AUDIENCES.title[lang]}>
+            {AUDIENCES.items.map((it) => (
+              <div key={it.title.fr} className="h-full rounded-2xl border border-line bg-mist p-6">
+                <h3 className="font-display text-lg font-medium tracking-[-0.01em] text-graphite">{it.title[lang]}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-steel">{it.text[lang]}</p>
+              </div>
+            ))}
+          </MobileCarousel>
+          <ul className="hidden divide-y divide-line border-y border-line md:block">
+            {AUDIENCES.items.map((it) => (
+              <li key={it.title.fr} className="grid gap-2 py-6 md:grid-cols-[2fr_3fr] md:gap-8">
+                <h3 className="font-display text-lg font-medium tracking-[-0.01em] text-graphite">{it.title[lang]}</h3>
+                <p className="text-sm leading-relaxed text-steel">{it.text[lang]}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );

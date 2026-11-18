@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { Service } from "@/lib/content";
 import ServiceIcon from "./ServiceIcon";
+import MobileCarousel from "./MobileCarousel";
 import { useLanguage } from "./LanguageProvider";
 
 export default function ServicesOverview({ services }: { services: Service[] }) {
@@ -27,7 +28,25 @@ export default function ServicesOverview({ services }: { services: Service[] }) 
         </div>
 
         <div>
-          <ul className="divide-y divide-line border-y border-line">
+          <MobileCarousel className="md:hidden" label={o.heading}>
+            {services.map((s) => (
+              <Link
+                key={s.slug}
+                href={`/services/${s.slug}`}
+                className="group flex h-full flex-col rounded-2xl border border-line bg-mist p-6"
+              >
+                <ServiceIcon name={s.iconName} className="h-6 w-6 text-cyan-dim" strokeWidth={1.5} />
+                <span className="mt-5 font-display text-lg font-medium leading-snug tracking-[-0.01em] text-graphite">{s.title[lang]}</span>
+                <span className="mt-2 line-clamp-4 text-sm leading-relaxed text-steel">{s.tagline[lang]}</span>
+                <span className="mt-auto flex items-center gap-1 pt-5 text-sm font-semibold text-graphite">
+                  {lang === "fr" ? "Découvrir" : "Explore"}
+                  <ArrowUpRight className="h-4 w-4 text-cyan-dim" />
+                </span>
+              </Link>
+            ))}
+          </MobileCarousel>
+
+          <ul className="hidden divide-y divide-line border-y border-line md:block">
             {services.map((s) => (
               <li key={s.slug}>
                 <Link
