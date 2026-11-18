@@ -78,7 +78,7 @@ export default function StatsBand() {
       />
 
       <div className="relative mx-auto max-w-content px-5 py-12 sm:px-6 md:px-10 md:py-20 lg:px-16">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-4 md:gap-8">
+        <div className="-mx-5 flex snap-x snap-mandatory gap-8 overflow-x-auto px-5 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:-mx-6 sm:px-6 md:mx-0 md:grid md:grid-cols-4 md:gap-8 md:overflow-visible md:px-0 md:pb-0">
           {stats.map((stat, i) => {
             const match = stat.value.match(/^([\d.,]+)(.*)$/);
             const number = match ? match[1] : stat.value;
@@ -87,14 +87,14 @@ export default function StatsBand() {
             return (
               <div
                 key={stat.label.fr}
-                className="group relative"
+                className="group relative w-[42%] shrink-0 snap-start sm:w-[30%] md:w-auto md:shrink"
                 style={{ transitionDelay: `${i * 60}ms` }}
               >
                 <span className="mb-4 block font-display text-[11px] font-semibold uppercase tracking-[0.2em] text-graphite/30">
                   0{i + 1}
                 </span>
 
-                <p className="font-display text-5xl font-semibold leading-[0.9] tracking-[-0.04em] text-graphite transition-transform duration-500 group-hover:-translate-y-0.5 sm:text-6xl md:text-6xl lg:text-7xl">
+                <p className="font-display text-4xl font-semibold leading-[0.9] tracking-[-0.04em] text-graphite transition-transform duration-500 group-hover:-translate-y-0.5 sm:text-6xl md:text-6xl lg:text-7xl">
                   <Counter target={number} suffix={suffix} />
                 </p>
 
