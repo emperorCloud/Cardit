@@ -12,8 +12,8 @@ export default function ServicesOverview({ services }: { services: Service[] }) 
   const o = t.servicesOverview;
 
   return (
-    <section id="services" className="bg-white py-20 md:py-32">
-      <div className="mx-auto grid max-w-content gap-12 px-5 sm:px-6 md:px-10 lg:grid-cols-[5fr_7fr] lg:gap-20 lg:px-16">
+    <section id="services" className="overflow-x-clip bg-white py-20 md:py-32">
+      <div className="mx-auto grid max-w-content grid-cols-1 gap-12 px-5 sm:px-6 md:px-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20 lg:px-16">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <h2 className="font-display text-3xl font-semibold leading-[1.08] tracking-[-0.03em] text-graphite sm:text-4xl md:text-5xl [text-wrap:balance]">
             {o.heading}

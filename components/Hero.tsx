@@ -27,8 +27,8 @@ export default function Hero() {
 
         <p className="mt-7 max-w-xl text-base leading-relaxed text-steel md:text-lg">{h.subtitle}</p>
 
-        <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-          <Link href="/contact" className="btn-primary group !min-h-[52px] !px-7">
+        <div className="mt-10 grid grid-cols-2 gap-3 sm:flex sm:flex-row sm:items-center">
+          <Link href="/contact" className="btn-primary group !min-h-[52px] whitespace-nowrap !px-4 sm:!px-7">
             {h.ctaPrimary}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </Link>
@@ -36,12 +36,13 @@ export default function Hero() {
             href={socials.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-secondary !min-h-[52px] !px-7"
+            className="btn-secondary !min-h-[52px] whitespace-nowrap !px-4 sm:!px-7"
           >
             <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
-            {h.ctaWhatsapp}
+            <span className="sm:hidden">WhatsApp</span>
+            <span className="hidden sm:inline">{h.ctaWhatsapp}</span>
           </a>
-          <Link href="/services" className="px-2 py-2 text-sm font-medium text-graphite underline-offset-4 hover:text-cyan-dim hover:underline sm:ml-2">
+          <Link href="/services" className="col-span-2 py-2 text-center text-sm sm:col-span-1 sm:px-2 sm:text-left sm:ml-2 font-medium text-graphite underline-offset-4 hover:text-cyan-dim hover:underline sm:ml-2">
             {h.ctaSecondary}
           </Link>
         </div>

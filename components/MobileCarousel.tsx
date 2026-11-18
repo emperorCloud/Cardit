@@ -44,7 +44,7 @@ export default function MobileCarousel({
   const thumb = 100 / count;
 
   return (
-    <div className={wrapperClassName}>
+    <div className={`min-w-0 max-w-full ${wrapperClassName}`}>
       <ul
         ref={ref}
         onScroll={onScroll}

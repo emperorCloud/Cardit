@@ -12,8 +12,8 @@ const h2 = "font-display text-3xl font-semibold leading-[1.08] tracking-[-0.03em
 export function WhyCardit() {
   const { lang } = useLanguage();
   return (
-    <section className="bg-mist py-20 md:py-32">
-      <div className={`${wrap} grid gap-12 lg:grid-cols-[5fr_7fr] lg:gap-20`}>
+    <section className="overflow-x-clip bg-mist py-20 md:py-32">
+      <div className={`${wrap} grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20`}>
         <div className="lg:sticky lg:top-28 lg:self-start">
           <h2 className={h2}>{WHY.title[lang]}</h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-steel md:text-lg">{WHY.intro[lang]}</p>
@@ -39,7 +39,7 @@ export function Spotlight() {
   return (
     <section className="bg-white py-20 md:py-28">
       <div className={wrap}>
-        <div className="grid gap-10 rounded-3xl border border-line bg-white p-7 shadow-card sm:p-10 md:grid-cols-[6fr_5fr] md:gap-16 md:p-14">
+        <div className="grid grid-cols-1 gap-10 rounded-3xl border border-line bg-white p-7 shadow-card sm:p-10 md:grid-cols-[minmax(0,6fr)_minmax(0,5fr)] md:gap-16 md:p-14">
           <div>
             <h2 className="font-display text-3xl font-semibold leading-[1.1] tracking-[-0.03em] text-graphite md:text-4xl [text-wrap:balance]">
               {SPOTLIGHT.title[lang]}
@@ -67,7 +67,7 @@ export function Spotlight() {
 export function Process() {
   const { lang } = useLanguage();
   return (
-    <section className="bg-mist py-20 md:py-32">
+    <section className="overflow-x-clip bg-mist py-20 md:py-32">
       <div className={wrap}>
         <h2 className={`${h2} max-w-3xl`}>{PROCESS.title[lang]}</h2>
         <MobileCarousel wrapperClassName="mt-12 md:mt-14" className="md:grid md:grid-cols-2 md:gap-10 lg:grid-cols-4 lg:gap-8" label={PROCESS.title[lang]}>
@@ -91,8 +91,8 @@ export function Process() {
 export function Audiences() {
   const { lang } = useLanguage();
   return (
-    <section className="bg-white py-20 md:py-32">
-      <div className={`${wrap} grid gap-12 lg:grid-cols-[5fr_7fr] lg:gap-20`}>
+    <section className="overflow-x-clip bg-white py-20 md:py-32">
+      <div className={`${wrap} grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20`}>
         <h2 className={h2}>{AUDIENCES.title[lang]}</h2>
         <div>
           <MobileCarousel className="md:hidden" label={AUDIENCES.title[lang]}>
@@ -121,7 +121,7 @@ export function Faq() {
   const { lang } = useLanguage();
   return (
     <section className="bg-white py-20 md:py-28">
-      <div className={`${wrap} grid gap-12 lg:grid-cols-[5fr_7fr] lg:gap-20`}>
+      <div className={`${wrap} grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-20`}>
         <h2 className={h2}>{FAQ.title[lang]}</h2>
         <div className="divide-y divide-line border-y border-line">
           {FAQ.items.map((q) => (
